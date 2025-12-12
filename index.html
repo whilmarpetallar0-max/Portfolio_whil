@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whilmar Petallar - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        /* Particle Background Animation */
+        .particle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #ff6b6b;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #ff6b6b;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin: 4rem 0;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: gradientShift 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+        }
+
+        .typing-text {
+            font-size: 1.8rem;
+            color: #feca57;
+            font-weight: 600;
+            min-height: 50px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.8rem;
+            background-color: #ff6b6b;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Profile Image Section */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        .profile-pic {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            z-index: 2;
+            border: 5px solid rgba(255, 107, 107, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 80px rgba(255, 107, 107, 0.8);
+            }
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .orbit-ring:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: -25px;
+            left: -25px;
+        }
+
+        .orbit-ring:nth-child(2) {
+            width: 450px;
+            height: 450px;
+            top: -50px;
+            left: -50px;
+            animation-duration: 15s;
+            animation-direction: reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .orbit-dot {
+            width: 15px;
+            height: 15px;
+            background: #feca57;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px #feca57;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 25px rgba(255, 107, 107, 0.4);
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Sections */
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .about-card h3 {
+            color: #feca57;
+            margin-bottom: 1rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-item:hover::before {
+            left: 100%;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b6b;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b6b;
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .project-card h3 {
+            color: #feca57;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: #ddd;
+            line-height: 1.8;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid #ff6b6b;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-item strong {
+            color: #feca57;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(10, 10, 10, 0.8);
+            border-top: 2px solid #ff6b6b;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .typing-text {
+                font-size: 1.3rem;
+            }
+
+            .profile-wrapper {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-pic {
+                width: 250px;
+                height: 250px;
+            }
+
+            .orbit-ring:nth-child(1) {
+                width: 300px;
+                height: 300px;
+                top: -25px;
+                left: -25px;
+            }
+
+            .orbit-ring:nth-child(2) {
+                width: 350px;
+                height: 350px;
+                top: -50px;
+                left: -50px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div class="particle-bg">
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Whilmar Petallar</h1>
+                <div class="typing-text" id="typingText"></div>
+                <span class="cursor"></span>
+                <p>Crafting digital experiences with passion and precision</p>
+                <a href="#contact" class="btn">Let's Connect</a>
+            </div>
+            <div class="hero-image">
+                <div class="profile-wrapper">
+                    <div class="orbit-ring">
+                        <div class="orbit-dot"></div>
+                    </div>
+                    <div class="orbit-ring">
+                        <div class="orbit-dot"></div>
+                    </div>
+                    <img src="logo.jpg" alt="Whilmar Petallar" class="profile-pic">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="content-section">
+            <h2>About Me</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #ddd;">I'm Whilmar A. Petallar, a BSIS student from Tungod, Inabanga, Bohol, I'm passionate developer who loves turning ideas into reality through code and design.</p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎯 Mission</h3>
+                    <p>To create innovative web solutions that make a difference in people's lives through clean code and exceptional user experiences.</p>
+                </div>
+                <div class="about-card">
+                    <h3>💡 Philosophy</h3>
+                    <p>I believe in continuous learning, collaboration, and pushing the boundaries of what's possible on the web.</p>
+                </div>
+                <div class="about-card">
+                    <h3>🚀 Approach</h3>
+                    <p>Combining creativity with technical expertise to deliver solutions that are both beautiful and functional.</p>
+                </div>
+                <div class="about-card">
+                    <h3>🌟 Vision</h3>
+                    <p>Building a future where technology serves humanity, one line of code at a time.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">React</div>
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">Express.js</div>
+                <div class="skill-item">Git & GitHub</div>
+                <div class="skill-item">Responsive Design</div>
+                <div class="skill-item">UI/UX Design</div>
+                <div class="skill-item">REST APIs</div>
+                <div class="skill-item">Webpack</div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A fully responsive online store with shopping cart functionality, payment integration, and user authentication. Built with React and Node.js for optimal performance.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Creative Portfolio</h3>
+                    <p>A modern portfolio website showcasing creative work with smooth animations, transitions, and interactive elements.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Task Management App</h3>
+                    <p>An interactive task manager with drag-and-drop functionality, real-time updates, and team collaboration features.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Weather Dashboard</h3>
+                    <p>A beautiful weather application providing real-time data, forecasts, and interactive maps with multiple API integrations.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Social Media App</h3>
+                    <p>A social networking platform with user profiles, post creation, comments, likes, and real-time notifications.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Blog Platform</h3>
+                    <p>A content management system for bloggers with markdown support, categories, tags, and SEO optimization.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2>Get In Touch</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #ddd;">Let's create something amazing together! Feel free to reach out.</p>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <strong>Email:</strong> whilmarpetallar0@email.com
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> +63 985 119 4317
+                </div>
+                <div class="contact-item">
+                    <strong>Location:</strong> Tugod, Inabanga Bohol, Philippines
+                </div>
+                <div class="contact-item">
+                    <strong>LinkedIn:</strong> linkedin.com/in/whilmarpetallar
+                </div>
+                <div class="contact-item">
+                    <strong>GitHub:</strong> github.com/whilmarpetallar
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p style="font-size: 1.2rem; margin-bottom: 0.5rem;">&copy; 2025 Whilmar Petallar</p>
+        <p style="color: #feca57;">Built with passion • Powered by creativity</p>
+    </footer>
+
+    <script>
+        // Generate particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 100; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Typing animation
+        const texts = [
+            "Full Stack Developer",
+            "Web Designer",
+            "Problem Solver",
+            "Creative Thinker",
+            "UI/UX Enthusiast",
+            "Code Craftsman"
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function type() {
+            const currentText = texts[textIndex];
+            const typingElement = document.getElementById('typingText');
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typingSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(type, typingSpeed);
+        }
+        
+        setTimeout(type, 1000);
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUp 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
